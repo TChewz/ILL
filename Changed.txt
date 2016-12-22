@@ -1,0 +1,16 @@
+New Features that need testing:
+
+22/06/16
+
+Added: New loading screen (May change in the near future)
+Added: New Loading Intro
+Added: Panic buttton - Cops will now have access to a panic button, they will need to press it twice in order for it to call for urgent backup. Must only be used if your life is in complete danger. basically a call for SWAT. has a 5 minute cooldown.
+
+Changed: UO Based has been changed to a newer, much nicer looking base (thanks Muziqh)
+
+Fixed: The PIT script - Whenever you were pitted and you left the vehicle before the PIT script finished, you would receive the PIT effect on every vehicle you use, now (hopefully) fixed.
+Fixed: Speed Upgrade 4 and Speed Upgrade 5 (my bad)
+Fixed: Ammo for Hk417 in Marshalls box at DOJ, now 7.62mm instead of 5.56mm (my bad)
+Fixed: A bunch of errors appearing in the logs, should help with your FPS as well.
+
+General error fixing (which took the most time), recoding of some aspects of the mission and implementing more checks for some features to make the mission more stable.
