@@ -1,0 +1,99 @@
+//Made by Jonny (Juan) for IslandLifeLiberation.net
+		
+while {true} do
+{
+	uiSleep (25 * 60);
+	Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "Quick! Civilians! Arm up and work together!"};'] call broadcast;
+	Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "Go to the safehouse and fend off the cops!"};'] call broadcast;
+	Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "Hold it for 30 minutes and you all get $350,000. (Providing you are in the vicinity)"};'] call broadcast;
+	Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "You have 5 minutes to get armed and reach the safehouse!"};'] call broadcast;
+	uiSleep (5 * 60);
+	_civsOnScene = 0;
+	{
+		if ((_x distance (getMarkerPos "safeHouseMissionMain")) < 200) then
+		{
+			_civsOnScene = _civsOnScene + 1;
+		};
+	} forEach civarray;
+	
+	if (_civsOnScene == 0) then
+	{
+		Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "None of you made it to the safehouse! Mission has been cancelled.";};'] call broadcast;
+		Format['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "You must now wait until the next safehouse opportunity arises.";};'] call broadcast;
+	}
+	else
+	{
+		_AreaMarker = createMarker ["AreaOrKillingSafeHouse", (getMarkerPos "safeHouseMissionMain")];
+		_AreaMarker setMarkerShape "ELLIPSE";
+		_AreaMarker setMarkerSize [200,200];
+		_AreaMarker setMarkerColor "ColorBlack";
+		Format ['[] call copNotify_safeHouse;'] call broadcast;
+		Format ['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "The cops have been notified!"};'] call broadcast;
+		Format ['if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then {player sidechat "Defend the safehouse with your life!"};'] call broadcast;
+		_Server_Counter = 0;
+		while {true} do
+		{
+			_civsOnScene = 0;
+			{
+				if (((_x distance (getMarkerPos "safeHouseMissionMain")) < 200) && (alive _x)) then
+				{
+					_civsOnScene = _civsOnScene + 1;
+				};
+			} forEach civarray;
+			if (_Server_Counter == (10 * 60)) then {Format['player sidechat "20 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (20 * 60)) then {Format['player sidechat "10 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (25 * 60)) then {Format['player sidechat "5 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (26 * 60)) then {Format['player sidechat "4 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (27 * 60)) then {Format['player sidechat "3 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (28 * 60)) then {Format['player sidechat "2 Minutes remain on the safehouse mission!";'] call broadcast};
+			if (_Server_Counter == (29 * 60)) then {Format['player sidechat "1 Minute remain on the safehouse mission!";'] call broadcast};
+			if (_civsOnScene == 0) exitWith 
+			{
+				format['
+				SERVER globalChat "No civilians present in the safehouse! Cops have successfully secured the area!";
+				if (iscop) then 
+				{
+					player sidechat "Well done! Threat eliminated!";
+					player sidechat "Generously, the government has sent you $100,000";
+					bnkgeld = bnkgeld + 100000;
+					player sidechat format ["Spend it wisely, officer %1",name player];
+				};
+				if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then
+				{
+					player sidechat "Shit! The cops took us all out.";
+					player sidechat "Better luck next time....";
+				};
+				'] call broadcast;
+				deleteMarker _AreaMarker;
+			};
+			if (_Server_Counter == (30 * 60)) exitWith
+			{
+				format['
+				if ((isciv) && !(player in [civ51,civ52,civ53,civ54,civ55])) then
+				{
+					if ((player distance (getMarkerPos "safeHouseMissionMain")) < 350) then
+					{
+						player sidechat "Well done! You defended the safehouse!";
+						player sidechat "As a reward, you are being sent $350,000";
+						bnkgeld = bnkgeld + 350000;
+						player sidechat "Keep it up.";
+					}
+					else
+					{
+						player sidechat "You were not at the safehouse so you did not receive the $350,000, unlucky!";
+					};
+				};
+				
+				if (iscop) then
+				{
+					player sidechat "You failed!";
+					player sidechat "The civilians held the safehouse for 30 minutes!";
+				};
+				'] call broadcast;
+				deleteMarker _AreaMarker;
+			};
+			_Server_Counter = _Server_Counter + 1;
+			uiSleep 1;
+		};
+	};
+};
