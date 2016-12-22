@@ -1,0 +1,22 @@
+_role = Player;
+
+
+{
+	if (!isnil "_x") then {
+		_role removeAction _x;
+	};
+}foreach [actionunFlip,action_Juan_1,action122,Tier3Skin1,Tier3Skin2,Tier3Skin3,action5001,Tier3Skin4,Tier3Skin5,
+action24a,TierXSkin1,TierXSkin2,TierXSkin3,TierXSkin4,TierXSkin5,Tier2Skin1,actionDHS1,actionDHS2,Action_HUD_Classic,Action_HUD_Modern,
+wreckaction,gasaction, PanicButton, PIT, PolicePC, RequestBackup,ActionAirCop,action223,action_PMC_C1,action_PMC_C2,action_PMC_C3,action_PMC_C4,
+actionillegalSU,action_PMC_C5,aImpound_4,aImpound_2,aImpound_3,aImpound_1,action296,action295,actionBodyBag,action1,action1a,action2,action2a,
+action3,action4,ILG_DrivingTest,action5,action6,action7,action8,action9,action10,action11,action12,action13,action13a,action14,action15,action16,
+action17,action18,action19,action20,action20a,action21,action22,action23,action24,action25,action26,action27,action28,action29,action30,action34,
+action35,action36,action37,action38,action39,action40,action41,action42,action43,action44,action45,action46,action47,action48,action49,action50,
+action51,action53,action54,action55,action56,action57,action58,action59,action60,action61,action62,action63,action64,action65,action66,action67,
+action68,action69,action70,action71,action72,action73,action74,action75,action76,action77,action78,action79,action80,action81,action82,action83,
+action84,action85,action86,action87,action88,action89,action91,action92,action93,action94,action95,action96,action97,action98,action99,action100,
+action101,action102,action103,action104,action105,action106,action107,action108,action109,action110,action111,action112,action113,action114,
+action115,action116,action117,action118,action119,action120,action121,action122,action123,action124,action125,action126,action127,action128,
+action129,action130,action222,action223,action250,action251,action296,gsshop1,gsshop2,gsshop3,gsshop4,gsshop5,gsshop6,gsshop7,gsshop8,
+gsshop9,actiondonate,actionretrieve2,actionmil2,gangareaskin1,gangareaskin2,gangareaskin3,gangareaskin4,Linnet_Gate,Linnet_Clothes,
+convoy_rob_action,actionfsave,HideoutActions,gsshop1,gsshop2,gsshop3,gsshop4,gsshop5,gsshop6,gsshop7,gsshop8,gsshop9];
