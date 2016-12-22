@@ -1,0 +1,2 @@
+mhimusic = true;
+publicVariable "mhimusic";
